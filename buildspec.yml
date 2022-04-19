@@ -3,9 +3,19 @@ version: 0.2
 phases: 
     install:
         runtime-versions:
+            php: 7.4
             nodejs: 10
         commands:
             - echo "installing something"
+            - sudo yum update -y
+            - sudo yum install yum-utils –y
+            - sudo yum install epel-release –y
+            - sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+            - sudo yum-config-manager ––enable remi–php74
+            - sudo yum install php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysql –y
+            - sudo curl -sS https://getcomposer.org/installer | sudo php
+            - sudo mv composer.phar /usr/local/bin/composer
+            - sudo ln -s /usr/local/bin/composer /usr/bin/composer
     pre_build:
         commands: 
             - echo "we are in the pre build phase"
